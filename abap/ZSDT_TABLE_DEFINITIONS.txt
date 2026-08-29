@@ -1,0 +1,27 @@
+ZSDT_CUSTOMER
+Fields: MANDT(MANDT), CUSTOMER_ID(CHAR10), CUSTOMER_NAME(CHAR40), CITY(CHAR30), COUNTRY(LAND1)
+Key: MANDT + CUSTOMER_ID
+
+ZSDT_MATERIAL
+Fields: MANDT(MANDT), MATERIAL_ID(CHAR18), MATERIAL_DESC(CHAR40), UNIT_PRICE(CURR13.2)
+Key: MANDT + MATERIAL_ID
+
+ZSDT_SALES
+Fields: MANDT(MANDT), SALES_ORDER(CHAR10), ITEM_NO(NUMC6), CUSTOMER_ID(CHAR10), MATERIAL_ID(CHAR18), ORDER_DATE(DATS), REQ_QTY(QUAN13.3), NET_VALUE(CURR15.2)
+Key: MANDT + SALES_ORDER + ITEM_NO
+
+ZSDT_DELIVERY
+Fields: MANDT(MANDT), DELIVERY_NO(CHAR10), SALES_ORDER(CHAR10), DELIVERY_DATE(DATS), DELIV_QTY(QUAN13.3), STATUS(CHAR20)
+Key: MANDT + DELIVERY_NO
+
+ZSDT_SHIPMENT
+Fields: MANDT(MANDT), SHIPMENT_NO(CHAR10), DELIVERY_NO(CHAR10), SHIP_DATE(DATS), CARRIER(CHAR30), STATUS(CHAR20)
+Key: MANDT + SHIPMENT_NO
+
+Recommended DDIC settings:
+- Delivery class: A for application tables
+- Data maintenance: allowed for development/testing
+- Currency reference: use a suitable currency key in a production design
+- Quantity reference: use a suitable unit field in a production design
+
+For a real SAP implementation, prefer standard SAP domains/data elements where appropriate and add proper foreign-key relationships.
